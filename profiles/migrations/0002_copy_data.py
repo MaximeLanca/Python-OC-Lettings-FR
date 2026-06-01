@@ -2,14 +2,14 @@
 
 from django.db import migrations
 
-def copy_profile():
-    old_profile = apps.get.model('oc_lettings_site','Profile')
-    new_profile = apps.get.model('Profiles','Profile')
+def copy_profile(apps, schema_editor):
+    old_profile = apps.get_model('oc_lettings_site','Profile')
+    new_profile = apps.get_model('profiles','Profile')
 
     for old_object in old_profile.objects.all():
         new_profile.objects.create(
-            user = old_object.user
-            favorite_city = old_object.favorite_city
+            user_id = old_object.user_id,
+            favorite_city = old_object.favorite_city,
         )
 
 
@@ -17,6 +17,7 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('profiles', '0001_initial'),
+        ('oc_lettings_site', '0001_initial'), 
     ]
 
     operations = [

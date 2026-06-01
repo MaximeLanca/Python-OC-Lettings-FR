@@ -2,33 +2,34 @@
 
 from django.db import migrations
 
-def copy_lettings():
+def copy_lettings(apps, schema_editor):
     old_letting = apps.get_model('oc_lettings_site','Address')
-    new_letting = apps.get_model('Lettings','Address')
+    new_letting = apps.get_model('letting','Address')
 
-    for old in old_letting.object.all():
+    for old_object in old_letting.objects.all():
         new_letting.objects.create(
-            number = old.number,
-            street = old.street,
-            city = old.city,
-            state = old.state,
-            zip_code = old.zip_code,
-            country_iso_code = old.country_iso_code,
+            number = old_object.number,
+            street = old_object.street,
+            city = old_object.city,
+            state = old_object.state,
+            zip_code = old_object.zip_code,
+            country_iso_code = old_object.country_iso_code,
         )
 
     old_letting = apps.get_model('oc_lettings_site', 'Letting')
-    new_letting = apps.get_model('Lettings','Letting')
+    new_letting = apps.get_model('letting','Letting')
     
-    for old in old_letting.objects.all():
+    for old_object in old_letting.objects.all():
         new_letting.objects.create(
-            title = old.title,
-            address = old.address
+            title = old_object.title,
+            address_id = old_object.address_id
         )
 
 class Migration(migrations.Migration):
 
     dependencies = [
         ('letting', '0001_initial'),
+        ('oc_lettings_site', '0001_initial'), 
     ]
 
     operations = [
