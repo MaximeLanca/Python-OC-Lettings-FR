@@ -2,6 +2,16 @@
 
 from django.db import migrations
 
+def copy_profile():
+    old_profile = apps.get.model('oc_lettings_site','Profile')
+    new_profile = apps.get.model('Profiles','Profile')
+
+    for old_object in old_profile.objects.all():
+        new_profile.objects.create(
+            user = old_object.user
+            favorite_city = old_object.favorite_city
+        )
+
 
 class Migration(migrations.Migration):
 
@@ -10,5 +20,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-       
+       migrations.RunPython(copy_profile)
     ]
