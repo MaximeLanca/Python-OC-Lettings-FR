@@ -2,6 +2,28 @@
 
 from django.db import migrations
 
+def copy_lettings():
+    old_letting = apps.get_model('oc_lettings_site','Address')
+    new_letting = apps.get_model('Lettings','Address')
+
+    for old in old_letting.object.all():
+        new_letting.objects.create(
+            number = old.number,
+            street = old.street,
+            city = old.city,
+            state = old.state,
+            zip_code = old.zip_code,
+            country_iso_code = old.country_iso_code,
+        )
+
+    old_letting = apps.get_model('oc_lettings_site', 'Letting')
+    new_letting = apps.get_model('Lettings','Letting')
+    
+    for old in old_letting.objects.all():
+        new_letting.objects.create(
+            title = old.title,
+            address = old.address
+        )
 
 class Migration(migrations.Migration):
 
@@ -10,4 +32,5 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
+        migrations.RunPython(copy_lettings),
     ]
