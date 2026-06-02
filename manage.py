@@ -17,3 +17,5 @@ def main():
 
 if __name__ == '__main__':
     main()
+
+#TODO Comment gerer le linting? laisser les commentaires?
