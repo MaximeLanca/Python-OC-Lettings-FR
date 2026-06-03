@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Holiday Homes{% endblock title %}
+
+{% block content %}
+
+	
+<div class="container px-5 py-5 text-center">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h1>An error has occurred</h1>
+            <p>We have been notified of the issue and are working to resolve it.</p>
+        </div>
+    </div>
+</div>
+
+<div class="container px-5 py-5 text-center">
+    <div class="justify-content-center">
+        <a class="btn fw-500 ms-lg-4 btn-primary px-10" href="{% url 'profile:index' %}">
+    		Profiles
+        </a>
+        <a class="btn fw-500 ms-lg-4 btn-primary px-10" href="{% url 'letting:index' %}">
+            Lettings
+        </a>
+    </div>
+</div>
+
+{% endblock %}
