@@ -4,11 +4,13 @@ import os
 
 load_dotenv()
 
-SENTRY_SDK = os.getenv("SENTRY_SDK")
+SENTRY_DSN = os.getenv("SENTRY_SDK")
 
-sentry_sdk.init(
-    dsn="SENTRY_SDK",
-    # Add data like request headers and IP for users,
-    # see https://docs.sentry.io/platforms/python/data-management/data-collected/ for more info
-    send_default_pii=True,
-)
+
+def init_sentry():
+    if SENTRY_DSN:
+        sentry_sdk.init(
+            dsn=SENTRY_DSN,
+            send_default_pii=True,
+            traces_sample_rate=1.0,
+        )
