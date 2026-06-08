@@ -19,3 +19,5 @@ def letting(request, letting_id):
         'address': letting.address,
     }
     return render(request, 'letting/letting.html', context)
+
+
