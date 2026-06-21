@@ -17,7 +17,7 @@ class AddressModelTest(TestCase):
             city="Springfield",
             state="IL",
             zip_code=62701,
-            country_iso_code="USA"
+            country_iso_code="USA",
         )
 
     def test_str_returns_number_and_street(self):
@@ -36,7 +36,7 @@ class LettingModelTest(TestCase):
             city="Paris",
             state="FR",
             zip_code=75001,
-            country_iso_code="FRA"
+            country_iso_code="FRA",
         )
         self.letting = Letting.objects.create(title="Nice apartment", address=address)
 
@@ -50,12 +50,12 @@ class LettingUrlsTest(TestCase):
 
     def test_index_url_resolves(self):
         """The index URL should resolve to /lettings/ and map to views.index."""
-        url = reverse('letting:index')
-        self.assertEqual(url, '/lettings/')
+        url = reverse("letting:index")
+        self.assertEqual(url, "/lettings/")
         self.assertEqual(resolve(url).func, views.index)
 
     def test_letting_detail_url_resolves(self):
         """The detail URL should resolve to /lettings/<id>/ and map to views.letting."""
-        url = reverse('letting:letting', args=[1])
-        self.assertEqual(url, '/lettings/1/')
+        url = reverse("letting:letting", args=[1])
+        self.assertEqual(url, "/lettings/1/")
         self.assertEqual(resolve(url).func, views.letting)

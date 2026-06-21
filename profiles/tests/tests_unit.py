@@ -25,12 +25,12 @@ class ProfileUrlsTest(TestCase):
 
     def test_index_url_resolves(self):
         """The index URL should resolve to /profiles/ and map to views.index."""
-        url = reverse('profile:index')
-        self.assertEqual(url, '/profiles/')
+        url = reverse("profile:index")
+        self.assertEqual(url, "/profiles/")
         self.assertEqual(resolve(url).func, views.index)
 
     def test_profile_detail_url_resolves(self):
         """The detail URL should resolve to /profiles/<username>/ and map to views.profile."""
-        url = reverse('profile:profile', args=["alice"])
-        self.assertEqual(url, '/profiles/alice/')
+        url = reverse("profile:profile", args=["alice"])
+        self.assertEqual(url, "/profiles/alice/")
         self.assertEqual(resolve(url).func, views.profile)
