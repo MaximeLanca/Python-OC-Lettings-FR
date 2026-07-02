@@ -4,7 +4,7 @@ ENV DJANGO_SETTINGS_MODULE=oc_lettings_site.settings
 ARG SECRET_KEY=temp-secret-key-for-build
 COPY requirements.txt .
 RUN pip install uv && uv pip install --system -r requirements.txt
-RUN python -c "import django.db.backends.postgresql.utils as u; content = open(u.__file__).read().replace('raise AssertionError(\"database connection isn\\'t set to UTC\")', 'pass'); open(u.__file__, 'w').write(content)"
+#RUN python -c "import django.db.backends.postgresql.utils as u; content = open(u.__file__).read().replace('raise AssertionError(\"database connection isn\\'t set to UTC\")', 'pass'); open(u.__file__, 'w').write(content)"
 COPY . .
 RUN python manage.py collectstatic --noinput
 EXPOSE 8000
