@@ -7,3 +7,5 @@ python-dotenv==1.1.0
 gunicorn
 whitenoise
 six
+psycopg2-binary
+dj-database-url
