@@ -4,4 +4,19 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.11.0"
-dependencies = []
+dependencies = [
+    "django==3.0",
+    "gunicorn",
+    "whitenoise",
+    "six",
+    "psycopg2-binary",
+    "dj-database-url",
+    "sentry-sdk==2.29.1",
+    "python-dotenv==1.1.0",
+]
+
+[dependency-groups]
+dev = [
+    "flake8==3.7.0",
+    "pytest-django==3.9.0",
+]
