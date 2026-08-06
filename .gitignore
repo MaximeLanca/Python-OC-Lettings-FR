@@ -3,3 +3,4 @@
 venv
 .envfixtures.json
 docs/build/
+**/.DS_Store
