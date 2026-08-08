@@ -19,4 +19,5 @@ dependencies = [
 dev = [
     "flake8==7.1.1",
     "pytest-django==3.9.0",
+    "coverage",
 ]
