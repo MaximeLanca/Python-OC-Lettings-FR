@@ -71,6 +71,7 @@ WSGI_APPLICATION = "oc_lettings_site.wsgi.application"
 DATABASE_URL = os.environ.get("DATABASE_URL")
 if DATABASE_URL:
     DATABASES = {"default": dj_database_url.parse(DATABASE_URL)}
+    DATABASES["default"]["OPTIONS"] = {"options": "-c timezone=UTC"}
 else:
     DATABASES = {
         "default": {
