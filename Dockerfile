@@ -5,7 +5,8 @@ ARG SECRET_KEY=temp-secret-key-for-build
 COPY pyproject.toml uv.lock .
 RUN pip install uv && uv sync --locked --no-dev
 ENV PATH="/app/.venv/bin:$PATH"
-#RUN python -c "import django.db.backends.postgresql.utils as u; content = open(u.__file__).read().replace('raise AssertionError(\"database connection isn\\'t set to UTC\")', 'pass'); open(u.__file__, 'w').write(content)"
+RUN sed -i "s/raise AssertionError(\"database connection isn't set to UTC\")/pass/" \
+    $(python -c "import django.db.backends.postgresql.utils as u; print(u.__file__)")
 COPY . .
 RUN python manage.py collectstatic --noinput
 EXPOSE 8000
